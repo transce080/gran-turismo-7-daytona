@@ -43,6 +43,12 @@ press() {
   xdotool search --name "$WINDOW_NAME" keyup "$1"
 }
 
+quick_press() {
+  xdotool search --name "$WINDOW_NAME" keydown "$1"
+  sleep $QUICKPRESS_LENGTH
+  xdotool search --name "$WINDOW_NAME" keyup "$1"
+}
+
 exit_gracefully() {
   printf "\nQuitting \n"
   release $KEY_ANA_L
@@ -57,7 +63,7 @@ exit_gracefully() {
 LAPS=10
 LAP_MILES=2.6
 RACE_PRIZE=8520
-RACE_TIME=531
+RACE_TIME=568
 
 # ---------- key config ----------
 # Key config MUST be set to match your Chiaki key config
@@ -70,6 +76,7 @@ KEY_ANA_L='['      # default '['
 # ---------- constants ----------
 
 KEYPRESS_LENGTH=0.08
+QUICKPRESS_LENGTH=0.02
 RACE_MILES=$(multiply $LAP_MILES $LAPS)
 WINDOW_NAME='Chiaki | Stream'
 
@@ -97,7 +104,7 @@ do
 
   echo "  Racing"
   for lap in $(seq 1 $RACE_TIME); do
-    press $KEY_ANA_L
+    quick_press $KEY_ANA_L
     sleep 1
   done
 
