@@ -117,7 +117,7 @@ do
 
   echo "Rewards"
   press $KEY_X
-  echo "  Elapsed: $(($SECONDS / 360))h ($SECONDS / 60))m $(($SECONDS % 60))s"
+  echo "  Elapsed: $(($SECONDS % 360))h $(($SECONDS % 60))m $(($SECONDS % 60))s"
   sleep 3
 
   current_miles=$(add $current_miles $RACE_MILES)
