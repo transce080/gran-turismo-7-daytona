@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Gran Turismo 7 Daytona Autopilot Script
-# Copyright 2024 Jason Lonsberry
+
+# This work © 2024 by Jason Lonsberry is licensed under CC BY-NC-SA 4.0.
+# To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 set -e
 trap exit_gracefully SIGINT

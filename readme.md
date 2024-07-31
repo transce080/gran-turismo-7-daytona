@@ -77,6 +77,7 @@ This script is the digital equivalent of using a rubber-band on your controller.
   - Use a stopwatch to time between when the script says "Race ending" and when you cross the finish line (or vice versa) to know how much to adjust `RACE_TIME`.
 - You will also need to increase `RACE_TIME` periodically as your engine condition decreases over time, but keep your "peak" time written down because that's what you will set it back to once you do an engine overhaul.
 
-## Thanks
+## License & thanks
 
+- [Gran Turismo 7 Daytona Autopilot Script](https://github.com/transce080/gran-turismo-7-daytona) © 2024 by [Jason Lonsberry](https://github.com/transce080) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
 - If you find this script useful, feel free to buy me [coffee](https://www.buymeacoffee.com/transce).
