@@ -2,13 +2,31 @@
 
 # Gran Turismo 7 Daytona Autopilot Script
 
-# This work © 2024 by Jason Lonsberry is licensed under CC BY-NC-SA 4.0.
+# This work © 2025 by Jason Lonsberry is licensed under CC BY-NC-SA 4.0.
 # To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 set -e
 trap exit_gracefully SIGINT
 
 # To prevent sleep, launch with systemd-inhibit
+
+# ---------- config ----------
+
+KEYPRESS_LENGTH=0.08
+LAP_MILES=2.6
+LAPS=10
+QUICKPRESS_LENGTH=0.01
+RACE_PRIZE=85200
+RACE_TIME=671
+WINDOW_NAME='Chiaki | Stream'
+
+# ---------- key config ----------
+# Key config MUST be set to match your Chiaki key config
+
+ANALOG_L__R='bracketright' # default ']' Left analog pressing right
+DPAD_R='Right'             # default 'Right'
+KEY_R2='4'                 # default '4'
+KEY_X='Return'             # default 'Return'
 
 # ---------- dependencies ----------
 
@@ -50,42 +68,22 @@ quick_press() {
 }
 
 exit_gracefully() {
-  printf "\nQuitting \n"
-  release $KEY_ANA_L
-  release $KEY_DPAD_R
+  printf '\nQuitting \n'
+  release $ANALOG_L__R
+  release $DPAD_R
   release $KEY_R2
   release $KEY_X
   exit
 }
 
-# ---------- config ----------
-
-LAPS=10
-LAP_MILES=2.6
-RACE_PRIZE=8520
-RACE_TIME=568
-
-# ---------- key config ----------
-# Key config MUST be set to match your Chiaki key config
-
-KEY_DPAD_R='Right' # default 'Right'
-KEY_R2='4'         # default '4'
-KEY_X='Return'     # default 'Return'
-KEY_ANA_L='['      # default '['
-
-# ---------- constants ----------
-
-KEYPRESS_LENGTH=0.08
-QUICKPRESS_LENGTH=0.02
-RACE_MILES=$(multiply $LAP_MILES $LAPS)
-WINDOW_NAME='Chiaki | Stream'
-
 # ---------- main  ----------
+
+RACE_MILES=$(multiply $LAP_MILES $LAPS)
+RACE_TICKS=$(multiply 2 $RACE_TIME)
 
 current_miles=0.0
 current_money=0
 race_count=0
-SECONDS=0
 
 if ! wmctrl -l|grep "$WINDOW_NAME" >/dev/null 2>&1; then
   echo 'The Chiaki stream window was not found. Quitting'
@@ -102,26 +100,25 @@ do
   press $KEY_X
   sleep 8
 
-  echo "  Racing"
-  for lap in $(seq 1 $RACE_TIME); do
-    quick_press $KEY_ANA_L
-    sleep 1
+  echo '  Race start'
+  for lap in $(seq 1 $RACE_TICKS); do
+    quick_press $ANALOG_L__R
+    sleep 0.5
   done
 
-  echo "  Race ending"
+  echo '  Race ending'
   sleep 30
 
-  echo "Standings"
+  echo 'Standings'
   sleep 20 # extra wait here to buffer for slow finishes
   press $KEY_X
 
-  echo "Rewards"
+  echo 'Rewards'
   press $KEY_X
-  echo "  Elapsed: $(($SECONDS % 360))h $(($SECONDS % 60))m $(($SECONDS % 60))s"
   sleep 3
 
   current_miles=$(add $current_miles $RACE_MILES)
-  current_money=$((current_money + RACE_PRIZE * LAPS))
+  current_money=$((current_money + RACE_PRIZE))
 
   printf "  Credits: %'d\n" $current_money
   press $KEY_X
@@ -131,7 +128,7 @@ do
   press $KEY_X
   sleep 4
 
-  echo "Replay"
+  echo 'Replay'
   press $KEY_X
   sleep 4
   press $KEY_X
@@ -140,8 +137,8 @@ do
   press $KEY_X
   sleep 5
 
-  echo "Retry"
-  press $KEY_DPAD_R
+  echo 'Retry'
+  press $DPAD_R
   sleep 1
   press $KEY_X
   sleep 4

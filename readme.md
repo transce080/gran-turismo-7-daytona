@@ -60,7 +60,7 @@ This script is the digital equivalent of using a rubber-band on your controller.
 
 - You will need to set the `RACE_TIME` variable according to your vehicle speed.
   - If you're not sure, start with the time it takes to rubber-band the race.
-- You may also need to tweak the reward amount by modifying the `RACE_PRIZE` variable (note that this is the amount **per lap**).
+- If you use a different car or setup, tweak the reward amount by modifying the `RACE_PRIZE` variable.
 
 ## Directions
 
@@ -77,7 +77,12 @@ This script is the digital equivalent of using a rubber-band on your controller.
   - Use a stopwatch to time between when the script says "Race ending" and when you cross the finish line (or vice versa) to know how much to adjust `RACE_TIME`.
 - You will also need to increase `RACE_TIME` periodically as your engine condition decreases over time, but keep your "peak" time written down because that's what you will set it back to once you do an engine overhaul.
 
-## License & thanks
+## Changelog
 
-- [Gran Turismo 7 Daytona Autopilot Script](https://github.com/transce080/gran-turismo-7-daytona) © 2024 by [Jason Lonsberry](https://github.com/transce080) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
+- Initial Release
+- Updated for xdotool 3.2 and re-timed for GT7 Update 1.63
+
+## License & Thanks
+
+- [Gran Turismo 7 Daytona Autopilot Script](https://github.com/transce080/gran-turismo-7-daytona) © 2025 by [Jason Lonsberry](https://github.com/transce080) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
 - If you find this script useful, feel free to buy me [coffee](https://www.buymeacoffee.com/transce).
